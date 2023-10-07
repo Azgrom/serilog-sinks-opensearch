@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoggerMock", "LoggerMock\LoggerMock.csproj", "{31F5F5DA-F846-4F46-9C9E-F25A9767654B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Serilog.Sinks.OpenSearch", "serilog-sinks-opensearch\src\Serilog.Sinks.Elasticsearch\Serilog.Sinks.OpenSearch.csproj", "{32363AF0-1F0A-4F52-A56B-AE80159A2302}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Serilog.Formatting.OpenSearch", "serilog-sinks-opensearch\src\Serilog.Formatting.Elasticsearch\Serilog.Formatting.OpenSearch.csproj", "{6F7B776F-B592-4F2C-8EEB-0D9F6CA4CFF3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject1", "TestProject1\TestProject1.csproj", "{295C380C-E14D-4B3E-B844-4787B699D68B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{31F5F5DA-F846-4F46-9C9E-F25A9767654B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31F5F5DA-F846-4F46-9C9E-F25A9767654B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31F5F5DA-F846-4F46-9C9E-F25A9767654B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31F5F5DA-F846-4F46-9C9E-F25A9767654B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32363AF0-1F0A-4F52-A56B-AE80159A2302}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32363AF0-1F0A-4F52-A56B-AE80159A2302}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32363AF0-1F0A-4F52-A56B-AE80159A2302}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32363AF0-1F0A-4F52-A56B-AE80159A2302}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F7B776F-B592-4F2C-8EEB-0D9F6CA4CFF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F7B776F-B592-4F2C-8EEB-0D9F6CA4CFF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F7B776F-B592-4F2C-8EEB-0D9F6CA4CFF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F7B776F-B592-4F2C-8EEB-0D9F6CA4CFF3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{295C380C-E14D-4B3E-B844-4787B699D68B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{295C380C-E14D-4B3E-B844-4787B699D68B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{295C380C-E14D-4B3E-B844-4787B699D68B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{295C380C-E14D-4B3E-B844-4787B699D68B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
