@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Threading;
 using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Serilog.Debugging;
 using Serilog.Formatting.Json;
 using Serilog.Sinks.File;
@@ -27,7 +30,7 @@ namespace Serilog.Sinks.OpenSearch.Sample
                 .WriteTo.Console(theme: SystemConsoleTheme.Literate)
                 .WriteTo.OpenSearch(new OpenSearchSinkOptions(new Uri(Configuration.GetConnectionString("opensearch"))) // for the docker-compose implementation
                 {
-                    AutoRegisterTemplate = true,
+                    AutoRegisterTemplate = false,
                     OverwriteTemplate = true,
                     DetectOpenSearchVersion = true,
                     NumberOfReplicas = 1,
@@ -38,7 +41,20 @@ namespace Serilog.Sinks.OpenSearch.Sample
                     EmitEventFailure = EmitEventFailureHandling.WriteToSelfLog |
                                        EmitEventFailureHandling.WriteToFailureSink |
                                        EmitEventFailureHandling.RaiseCallback,
-                    FailureSink = new FileSink("./fail-{Date}.txt", new JsonFormatter(), null, null)
+                    FailureSink = new FileSink("./fail-{Date}.txt", new JsonFormatter(), null, null),
+                    BufferCleanPayload = (failingEvent, statuscode, exception) =>
+                    {
+                        dynamic e = JObject.Parse(failingEvent);
+                        return JsonConvert.SerializeObject(new Dictionary<string, object>()
+                        {
+                            { "@timestamp",e["@timestamp"]},
+                            { "level","Error"},
+                            { "message","Error: "+e.message},
+                            { "messageTemplate",e.messageTemplate},
+                            { "failingStatusCode", statuscode},
+                            { "failingException", exception}
+                        });
+                    },
                 })
                 .CreateLogger();
 

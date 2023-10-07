@@ -101,7 +101,9 @@ namespace Serilog.Sinks.OpenSearch
                 return Task.FromResult(default(T));
 
             var payload = CreatePayload(events);
-            return _state.Client.BulkAsync<T>(PostData.MultiJson(payload));
+
+            var multiJson = PostData.MultiJson(payload);
+            return _state.Client.BulkAsync<T>(multiJson);
         }
 
         /// <summary>
@@ -174,7 +176,8 @@ namespace Serilog.Sinks.OpenSearch
                     indexName: indexName,
                     pipelineName: pipelineName,
                     mappingType: _state.Options.TypeName);
-                payload.Add(LowLevelRequestResponseSerializer.Instance.SerializeToString(action));
+                var serializeToString = LowLevelRequestResponseSerializer.Instance.SerializeToString(action);
+                payload.Add(serializeToString);
 
                 var sw = new StringWriter();
                 _state.Formatter.Format(e, sw);
@@ -301,11 +304,11 @@ namespace Serilog.Sinks.OpenSearch
                 IndexName = indexName;
                 Pipeline = pipeline;
                 Id = id;
-                MappingType = mappingType;
+                // MappingType = mappingType;
             }
 
-            [DataMember(Name = "_type")]
-            public string MappingType { get; }
+            // [DataMember(Name = "_type")]
+            // public string MappingType { get; }
 
             [DataMember(Name = "_index")]
             public string IndexName { get; }
